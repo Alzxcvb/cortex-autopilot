@@ -9,6 +9,7 @@ from app.routers import (
     events,
     actions,
     shopify_proxy,
+    autopilot,
 )
 
 __all__ = [
@@ -21,4 +22,5 @@ __all__ = [
     "events",
     "actions",
     "shopify_proxy",
+    "autopilot",
 ]

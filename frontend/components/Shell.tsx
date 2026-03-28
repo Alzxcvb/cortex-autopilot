@@ -44,6 +44,17 @@ const navItems = [
       </svg>
     ),
   },
+  {
+    href: '/autopilot',
+    label: 'Cortex Autopilot',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.3" />
+        <path d="M8 5v3l2 1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="8" cy="8" r="1" fill="currentColor" />
+      </svg>
+    ),
+  },
 ]
 
 export default function Shell({ title, children }: ShellProps) {
@@ -57,7 +68,7 @@ export default function Shell({ title, children }: ShellProps) {
         <div className="px-4 py-4 border-b border-border">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-accent" />
-            <span className="text-sm font-semibold text-text-primary">Shopify App</span>
+            <span className="text-sm font-semibold text-text-primary">Cortex</span>
           </div>
         </div>
 

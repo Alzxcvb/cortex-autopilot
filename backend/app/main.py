@@ -28,6 +28,7 @@ from app.routers import (
     events,
     actions,
     shopify_proxy,
+    autopilot,
 )
 
 logging.basicConfig(
@@ -116,6 +117,7 @@ app.include_router(analytics.router)
 app.include_router(events.router)
 app.include_router(actions.router)
 app.include_router(shopify_proxy.router)
+app.include_router(autopilot.router)
 
 
 @app.get("/health")
