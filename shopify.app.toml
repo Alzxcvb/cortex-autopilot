@@ -1,0 +1,13 @@
+name = "HackathonSeeder"
+client_id = "5c610a3257563ccba4181182d1d8ecd0"
+application_url = "http://localhost:3456"
+embedded = false
+
+[access_scopes]
+scopes = "read_products,write_products,read_orders,write_orders,read_customers,write_customers,read_inventory,write_inventory,read_fulfillments,write_fulfillments,read_analytics,read_themes,write_themes,read_script_tags,write_script_tags,read_content,write_content,read_price_rules,write_price_rules,read_discounts,write_discounts,read_draft_orders,write_draft_orders,read_locations,read_files,write_files"
+
+[auth]
+redirect_urls = ["http://localhost:3456/auth/callback"]
+
+[webhooks]
+api_version = "2025-04"

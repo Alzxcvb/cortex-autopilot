@@ -71,8 +71,19 @@ class OAuthHandler(BaseHTTPRequestHandler):
                 }).encode()
 
                 req = urllib.request.Request(token_url, data=data, headers={"Content-Type": "application/json"})
-                resp = urllib.request.urlopen(req)
-                result = json.loads(resp.read())
+                try:
+                    resp = urllib.request.urlopen(req)
+                    result = json.loads(resp.read())
+                except Exception as e:
+                    error_body = e.read().decode() if hasattr(e, 'read') else str(e)
+                    print(f"  ✗ Token exchange failed: {error_body}")
+                    print(f"    URL: {token_url}")
+                    print(f"    client_id: {app_info['client_id'][:8]}...")
+                    print(f"    shop: {shop}")
+                    self.send_response(500)
+                    self.end_headers()
+                    self.wfile.write(f"Token exchange failed: {error_body}".encode())
+                    return
 
                 access_token = result.get("access_token")
                 if access_token:
@@ -141,9 +152,13 @@ def main():
             f"&redirect_uri={REDIRECT_URI}"
         )
 
-        print(f"\n[{app_name}] Opening install URL for {store}...")
-        print(f"  → Click 'Install' in the browser")
-        webbrowser.open(install_url)
+        print(f"\n[{app_name}] Install URL for {store}:")
+        print(f"  {install_url}")
+        print(f"  → Open this URL in your browser and click 'Install'")
+        try:
+            webbrowser.open(install_url)
+        except Exception:
+            pass  # Browser open failed — user can copy-paste the URL
 
         # Wait for callback
         while app_name not in tokens:
